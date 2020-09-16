@@ -33,6 +33,7 @@ abstract class AppRecorder extends WidgetRecorder {
 }
 
 class ScrollRecorder extends AppRecorder {
+  ScrollRecorder() : super(benchmarkName: 'scroll');
 
   Future<void> automate() async {
     final scrollable = Scrollable.of(find.byKey(textKey).evaluate().single);
@@ -46,6 +47,7 @@ class ScrollRecorder extends AppRecorder {
 }
 
 class PageRecorder extends AppRecorder {
+  PageRecorder() : super(benchmarkName: 'page');
 
   bool _completed = false;
 
@@ -67,6 +69,7 @@ class PageRecorder extends AppRecorder {
 }
 
 class TapRecorder extends AppRecorder {
+  TapRecorder() : super(benchmarkName: 'tap');
 
   bool _completed = false;
 
