@@ -91,9 +91,9 @@ class TapRecorder extends AppRecorder {
 Future<void> main() async {
   await runBenchmarks(
     {
-      'scroll': () => AppRecorder(benchmarkName: 'scroll'),
-      'page': () => AppRecorder(benchmarkName: 'page'),
-      'tap': () => AppRecorder(benchmarkName: 'tap'),
+      'scroll': () => ScrollRecorder(),
+      'page': () => PageRecorder(),
+      'tap': () => TapRecorder(),
     },
   );
 }
