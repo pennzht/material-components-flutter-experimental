@@ -48,7 +48,7 @@ class AppRecorder extends WidgetRecorder {
 
 class ScrollRecorder extends AppRecorder {
 
-  Future<void> automateScrolling() async {
+  Future<void> automate() async {
     final scrollable = Scrollable.of(find.byKey(textKey).evaluate().single);
     await scrollable.position.animateTo(
       30000,
@@ -61,7 +61,7 @@ class ScrollRecorder extends AppRecorder {
 
 class PageRecorder extends AppRecorder {
 
-  Future<void> automatePaging() async {
+  Future<void> automate() async {
     final controller = LiveWidgetController(WidgetsBinding.instance);
     for (int i = 0; i < 10; ++i) {
       print('Testing round $i...');
@@ -77,7 +77,7 @@ class PageRecorder extends AppRecorder {
 
 class TapRecorder extends AppRecorder {
 
-  Future<void> automateTapping() async {
+  Future<void> automate() async {
     final controller = LiveWidgetController(WidgetsBinding.instance);
     for (int i = 0; i < 10; ++i) {
       print('Testing round $i...');
