@@ -17,17 +17,6 @@ abstract class AppRecorder extends WidgetRecorder {
 
   final String benchmarkName;
 
-  bool _completed = false;
-
-  @override
-  bool shouldContinue() {
-    if (benchmarkName == 'scroll') {
-      return profile.shouldContinue();
-    } else {
-      return profile.shouldContinue() || !_completed;
-    }
-  }
-
   Future<void> automate();
 
   @override
@@ -58,6 +47,11 @@ class ScrollRecorder extends AppRecorder {
 
 class PageRecorder extends AppRecorder {
 
+  bool _completed = false;
+
+  @override
+  bool shouldContinue() => profile.shouldContinue() || !_completed;
+
   Future<void> automate() async {
     final controller = LiveWidgetController(WidgetsBinding.instance);
     for (int i = 0; i < 10; ++i) {
@@ -73,6 +67,11 @@ class PageRecorder extends AppRecorder {
 }
 
 class TapRecorder extends AppRecorder {
+
+  bool _completed = false;
+
+  @override
+  bool shouldContinue() => profile.shouldContinue() || !_completed;
 
   Future<void> automate() async {
     final controller = LiveWidgetController(WidgetsBinding.instance);
