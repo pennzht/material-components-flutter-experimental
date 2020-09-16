@@ -12,7 +12,7 @@ import 'package:web_benchmarks_example/homepage.dart'
 import 'package:web_benchmarks_example/aboutpage.dart' show backKey;
 
 /// A recorder that measures frame building durations.
-class AppRecorder extends WidgetRecorder {
+abstract class AppRecorder extends WidgetRecorder {
   AppRecorder({@required this.benchmarkName}) : super(name: benchmarkName);
 
   final String benchmarkName;
@@ -28,14 +28,11 @@ class AppRecorder extends WidgetRecorder {
     }
   }
 
+  Future<void> automate();
+
   @override
   Widget createWidget() {
-    final automationFunction = {
-      'scroll': automateScrolling,
-      'page': automatePaging,
-      'tap': automateTapping,
-    }[benchmarkName];
-    Future.delayed(Duration(milliseconds: 400), automationFunction);
+    Future.delayed(Duration(milliseconds: 400), automate);
     return MyApp();
   }
 
