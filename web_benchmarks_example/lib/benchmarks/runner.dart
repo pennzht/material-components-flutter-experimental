@@ -39,6 +39,15 @@ class AppRecorder extends WidgetRecorder {
     return MyApp();
   }
 
+  Future<void> animationStops() async {
+    while (WidgetsBinding.instance.hasScheduledFrame) {
+      await Future<void>.delayed(Duration(milliseconds: 200));
+    }
+  }
+}
+
+class ScrollRecorder extends AppRecorder {
+
   Future<void> automateScrolling() async {
     final scrollable = Scrollable.of(find.byKey(textKey).evaluate().single);
     await scrollable.position.animateTo(
@@ -47,6 +56,10 @@ class AppRecorder extends WidgetRecorder {
       duration: Duration(seconds: 20),
     );
   }
+
+}
+
+class PageRecorder extends AppRecorder {
 
   Future<void> automatePaging() async {
     final controller = LiveWidgetController(WidgetsBinding.instance);
@@ -60,6 +73,10 @@ class AppRecorder extends WidgetRecorder {
     _completed = true;
   }
 
+}
+
+class TapRecorder extends AppRecorder {
+
   Future<void> automateTapping() async {
     final controller = LiveWidgetController(WidgetsBinding.instance);
     for (int i = 0; i < 10; ++i) {
@@ -70,11 +87,6 @@ class AppRecorder extends WidgetRecorder {
     _completed = true;
   }
 
-  Future<void> animationStops() async {
-    while (WidgetsBinding.instance.hasScheduledFrame) {
-      await Future<void>.delayed(Duration(milliseconds: 200));
-    }
-  }
 }
 
 Future<void> main() async {
