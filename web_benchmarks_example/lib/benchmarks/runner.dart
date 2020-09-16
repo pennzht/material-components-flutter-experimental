@@ -43,7 +43,6 @@ class ScrollRecorder extends AppRecorder {
       duration: Duration(seconds: 20),
     );
   }
-
 }
 
 class PageRecorder extends AppRecorder {
@@ -65,7 +64,6 @@ class PageRecorder extends AppRecorder {
     }
     _completed = true;
   }
-
 }
 
 class TapRecorder extends AppRecorder {
@@ -85,7 +83,6 @@ class TapRecorder extends AppRecorder {
     }
     _completed = true;
   }
-
 }
 
 Future<void> main() async {
